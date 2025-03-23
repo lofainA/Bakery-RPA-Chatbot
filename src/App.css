@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Antic+Slab&display=swap');
+
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.hero {
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}

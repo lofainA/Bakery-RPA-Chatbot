@@ -1,0 +1,21 @@
+.navbar-container {
+    display: flex;
+}
+
+.logo {
+    position: absolute;
+    top: 0;
+    left: 2rem;
+    height: 120px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    align-items: center;
+    padding: 1rem 2rem;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+}

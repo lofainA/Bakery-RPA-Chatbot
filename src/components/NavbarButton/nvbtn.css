@@ -1,0 +1,25 @@
+.navbar-button {
+    font-family: "Antic Slab", sans-serif;
+    color: #B06533;
+    font-size: 20px;
+    width: fit-content;
+}
+
+.navbar-button:hover::after {
+    content: "";
+    display: block;
+    width: 100%;  /* Changed from 0 to show the effect on hover */
+    height: .2rem;
+    background: #889E73;
+    transition: width .3s;
+}
+
+/* Initial state (when not hovered) */
+.navbar-button::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: .2rem;
+    background: #889E73;
+    transition: width .3s;
+}
