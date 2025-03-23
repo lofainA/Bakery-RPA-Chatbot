@@ -26,26 +26,26 @@ To run the project locally, you'll need the following:
 1. **Clone the Repository**
    First, clone the repository to your local machine:
    ```bash
-   git clone https://github.com/yourusername/dough-and-delight.git
-   cd dough-and-delight
+   git clone https://github.com/lofainA/Bakery-RPA-Chatbot.git
+   cd Bakery-RPA-Chatbot
    ```
 
 2. **Frontend Setup (React)**
-   - Navigate to the `frontend` directory and install the dependencies:
-     
-     `npm install`
- 
+   - Install the dependencies:
+     ```bash
+     npm install
+     ```
    - Once the dependencies are installed, start the React development server:
-
-     `npm run dev`
-
+     ```bash
+     npm run dev
+     ```
    - The frontend should now be running at `http://localhost:3000`.
 
 3. **Backend Setup (Flask API)**
    - Run the Flask API server:
-
-    `python server.py`
-
+    ```bash
+    python server.py
+    ```
    - The Flask backend will be running at `http://127.0.0.1:5000`.
 
 4. **Interact with the Chatbot**
