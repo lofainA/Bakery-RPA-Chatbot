@@ -184,4 +184,53 @@
   .chat-box::-webkit-scrollbar-thumb:hover {
     background: #aaa;
   }
+
+  /* Add these styles to your existing Chatbot.css file */
+
+.loading-dots {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 24px;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+  background-color: #999;
+  border-radius: 50%;
+  animation: pulse 1.4s infinite ease-in-out;
+}
+
+.dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+  margin-right: 0;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(0.75);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Disable input during loading */
+input:disabled, button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
   

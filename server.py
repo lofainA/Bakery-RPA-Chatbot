@@ -6,7 +6,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-UIROBOT_PATH = "C:/Users/STUDIOFIT50/AppData/Local/Programs/UiPath/Studio/UiRobot.exe"
+UIROBOT_PATH = "C:/Users/YUKESH ADITIYA P S/AppData/Local/Programs/UiPath/Studio/UiRobot.exe"
 PROCESS_NAME = "BakeryChatbot"
 
 @app.route("/chat", methods=["POST"])

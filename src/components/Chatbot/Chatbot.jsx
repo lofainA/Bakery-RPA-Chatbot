@@ -16,6 +16,7 @@ const Chatbot = () => {
   const [userInput, setUserInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [greeting, setGreeting] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   // Select a random greeting when component mounts or chat is opened
   useEffect(() => {
@@ -35,7 +36,10 @@ const Chatbot = () => {
   
     const userMessage = { sender: "user", text: userInput };
     setMessages((prev) => [...prev, userMessage]);
-  
+    
+    // Add loading message
+    setIsLoading(true);
+    
     try {
       const response = await fetch("http://127.0.0.1:5000/chat", {
         method: "POST",
@@ -49,10 +53,19 @@ const Chatbot = () => {
       // Extract only the message value
       const botMessageText = data.response || "No response received";
       const botMessage = { sender: "bot", text: botMessageText };
+      
+      // Remove loading state and add the bot message
+      setIsLoading(false);
       setMessages((prev) => [...prev, botMessage]);
   
     } catch (error) {
       console.error("Error fetching response:", error);
+      // Show error message and remove loading state
+      setIsLoading(false);
+      setMessages((prev) => [...prev, { 
+        sender: "bot", 
+        text: "Sorry, I couldn't process your request. Please try again." 
+      }]);
     }
   
     setUserInput("");
@@ -85,14 +98,26 @@ const Chatbot = () => {
                 <p>{greeting}</p>
               </div>
             ) : (
-              messages.map((msg, index) => (
-                <div
-                  key={index}
-                  className={`message ${msg.sender === "user" ? "user-message" : "bot-message"}`}
-                >
-                  <span className="message-text">{msg.text}</span>
-                </div>
-              ))
+              <>
+                {messages.map((msg, index) => (
+                  <div
+                    key={index}
+                    className={`message ${msg.sender === "user" ? "user-message" : "bot-message"}`}
+                  >
+                    <span className="message-text">{msg.text}</span>
+                  </div>
+                ))}
+                
+                {isLoading && (
+                  <div className="message bot-message">
+                    <span className="message-text loading-dots">
+                      <span className="dot"></span>
+                      <span className="dot"></span>
+                      <span className="dot"></span>
+                    </span>
+                  </div>
+                )}
+              </>
             )}
           </div>
           <div className="chat-input">
@@ -102,8 +127,9 @@ const Chatbot = () => {
               onChange={(e) => setUserInput(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Type your message..."
+              disabled={isLoading}
             />
-            <button onClick={sendMessage}>
+            <button onClick={sendMessage} disabled={isLoading}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                 <path fill="none" d="M0 0h24v24H0z"/>
                 <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z" fill="currentColor"/>
